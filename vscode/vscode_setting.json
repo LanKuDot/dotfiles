@@ -1,0 +1,22 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.minimap.enabled": false,
+    "editor.tokenColorCustomizations": {
+        "comments": "#10a555",
+        "numbers": "#e02626",
+        "functions": "#9bff18",
+        "textMateRules": [
+            {
+                "scope":"string.quoted.docstring.multi.python",
+                "settings": {
+                    "foreground": "#00b5bb",
+                }
+            }
+        ]
+    },
+    "window.zoomLevel": 0,
+    "explorer.autoReveal": false,
+    "terminal.external.windowsExec": "C:\\Program Files\\Git\\git-bash.exe",
+    "terminal.integrated.defaultProfile.windows": "Git Bash"
+}
+

@@ -1,0 +1,10 @@
+BoldAsFont=-1
+FontHeight=11
+Font=Yahei Mono
+Term=xterm-256color
+CursorType=block
+Columns=95
+Locale=zh_TW
+Charset=UTF-8
+BellTaskbar=no
+

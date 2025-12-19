@@ -1,0 +1,20 @@
+set scrolloff=10
+set cursorline
+set incsearch
+set showcmd
+set showmode
+set relativenumber
+set number
+set surround
+set commentary
+
+inoremap jj <C-[>
+inoremap jo <C-o>o
+inoremap jO <C-o>O
+inoremap jl <C-o>a
+inoremap jL <C-o>A
+inoremap jh <C-o>h
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+inoremap #re# #region<SPACE><ESC>2o<ESC>a#endregion<ESC>2kA
+

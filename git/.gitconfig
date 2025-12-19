@@ -1,0 +1,29 @@
+[alias]
+    st = status -s
+    lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    log-between = log --decorate --pretty=format:\"%C(yellow)%h%C(reset) %C(bold cyan)%>(15)%an%C(reset) %C(bold green)(%ad)%C(reset) %s%C(bold yellow)%d%C(reset)\" --date=format-local:\"%Y-%m-%d %H:%M\"
+    log1 = log --oneline
+    commend = commit --amend
+    cm = commit
+    stag = tag -s
+    diffw = diff --word-diff
+    vimmerge = mergetool --tool=vimdiff
+    pushfwl = push --force-with-lease
+[user]
+    name = 
+    email = 
+    signingkey = 
+[core]
+    autocrlf = true
+    quotePath = false
+    symlinks = true
+[merge]
+    tool = unityyamlmerge
+[mergetool "unityyamlmerge"]
+    trustExitCode = false
+    cmd = '/c/Program Files/Unity/Hub/Editor/[Unity_Version]/Editor/Data/Tools/UnityYAMLMerge.exe' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"
+[gui]
+    encoding = utf-8
+[commit]
+    gpgsign = true
+
