@@ -7,6 +7,8 @@
     cm = commit
     stag = tag -s
     diffw = diff --word-diff
+    diffs = diff --staged
+    diffsn = diff --staged --name-only
     vimmerge = mergetool --tool=vimdiff
     pushfwl = push --force-with-lease
 [user]
