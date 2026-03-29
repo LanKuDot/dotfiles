@@ -13,8 +13,19 @@ fi
 create_symlink() {
     local src="$1"
     local dest="$2"
+    local is_dir=0
 
-    if [[ ! -e "$src" ]]; then
+    # Detect directory entries (paths ending with /)
+    if [[ "$src" == */ ]]; then
+        is_dir=1
+        src="${src%/}"
+        dest="${dest%/}"
+    fi
+
+    if [[ "$is_dir" -eq 1 && ! -d "$src" ]]; then
+        echo "  SKIP (source dir missing): $src"
+        return
+    elif [[ "$is_dir" -eq 0 && ! -e "$src" ]]; then
         echo "  SKIP (source missing): $src"
         return
     fi
@@ -35,13 +46,17 @@ create_symlink() {
         fi
         rm "$dest"
         echo "  REMOVE (old symlink): $dest"
-    elif [[ -e "$dest" ]]; then
+    elif [[ -e "$dest" || -d "$dest" ]]; then
         local backup="${dest}.bak"
         mv "$dest" "$backup"
         echo "  BACKUP $dest -> $backup"
     fi
 
-    ln -s "$src" "$dest"
+    if [[ "$is_dir" -eq 1 ]]; then
+        ln -sn "$src" "$dest"
+    else
+        ln -s "$src" "$dest"
+    fi
     echo "  LINK $dest -> $src"
 }
 

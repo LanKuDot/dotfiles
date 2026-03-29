@@ -17,10 +17,20 @@ if (-not (Test-Path $Config)) {
 function New-Symlink {
     param(
         [string]$Src,
-        [string]$Dest
+        [string]$Dest,
+        [bool]$IsDir = $false
     )
 
-    if (-not (Test-Path $Src)) {
+    # Strip trailing slash for filesystem operations
+    if ($IsDir) {
+        $Src = $Src.TrimEnd('/', '\')
+        $Dest = $Dest.TrimEnd('/', '\')
+    }
+
+    if ($IsDir -and -not (Test-Path $Src -PathType Container)) {
+        Write-Host "  SKIP (source dir missing): $Src"
+        return
+    } elseif (-not $IsDir -and -not (Test-Path $Src)) {
         Write-Host "  SKIP (source missing): $Src"
         return
     }
@@ -48,7 +58,6 @@ function New-Symlink {
         }
     }
 
-    $IsDirectory = (Get-Item $Src) -is [System.IO.DirectoryInfo]
     New-Item -ItemType SymbolicLink -Path $Dest -Target $Src | Out-Null
     Write-Host "  LINK $Dest -> $Src"
 }
@@ -85,10 +94,12 @@ function Install-Section {
         $SrcRel = $parts[0].Trim()
         $DestRel = $parts[1].Trim()
 
+        $IsDir = $SrcRel.EndsWith("/")
+
         $Src = Join-Path $DotfilesDir (Join-Path $Section $SrcRel)
         $Dest = Join-Path $HomeDir $DestRel
 
-        New-Symlink -Src $Src -Dest $Dest
+        New-Symlink -Src $Src -Dest $Dest -IsDir $IsDir
     }
 }
 
