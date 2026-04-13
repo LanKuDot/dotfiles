@@ -11,7 +11,7 @@
     diffsn = diff --staged --name-only
     vimmerge = mergetool --tool=vimdiff
     pushfwl = push --force-with-lease
-    fr = !git fetch && git stash && git rebase && git stash pop
+    fr = !git fetch origin @ && git stash && git rebase && git stash pop
 [user]
     name = 
     email = 
