@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"$USERPROFILE\\.claude\\inform-popup\\scripts\\notify.ps1\" -Title 'Claude Code' -Message 'Task completed!'",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"$USERPROFILE\\.claude\\inform-popup\\scripts\\notify.ps1\" -Title 'Claude Code' -Message 'Permission required'",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}
